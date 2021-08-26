@@ -68,7 +68,17 @@ public class TitleDaoImpl implements TitleDao {
 
 	@Override
 	public int insertTitle(Title title) {
-		// TODO Auto-generated method stub
+		String sql = "insert into title values (?, ?)";
+		try(Connection con = JdbcUtil.getConnection();
+			PreparedStatement pstmt = con.prepareStatement(sql);){
+			
+			pstmt.setInt(1, title.getCode());
+			pstmt.setString(2, title.getName());
+			
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return 0;
 	}
 

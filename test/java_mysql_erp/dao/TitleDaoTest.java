@@ -46,7 +46,10 @@ public class TitleDaoTest {
 
 	@Test
 	public void testInsertTitle() {
-		fail("Not yet implemented");
+		System.out.println("testInsertTitle()");
+		Title newTitle = new Title(6, "인턴");
+		int res = dao.insertTitle(newTitle);
+		Assert.assertEquals(1, res);
 	}
 
 	@Test
