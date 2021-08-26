@@ -48,7 +48,21 @@ public class TitleDaoImpl implements TitleDao {
 
 	@Override
 	public Title selectTitleByCode(Title title) {
-		// TODO Auto-generated method stub
+		String sql = "select code, name from title where code = ?";
+		try(Connection con = JdbcUtil.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);){
+			
+			pstmt.setInt(1, title.getCode());
+			System.out.println("pstmt >> " + pstmt);
+			
+			try(ResultSet rs = pstmt.executeQuery()){
+			if(rs.next()) {
+				return getTitle(rs);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
