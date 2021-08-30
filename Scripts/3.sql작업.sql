@@ -8,3 +8,4 @@ update title set name = '계약직' where code =6;
 
 delete from title where code = 6;
 
+
